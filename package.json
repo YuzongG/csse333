@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuzongG/nodejs.git"
+  },
+  "keywords": [
+    "123qwe"
+  ],
+  "author": "yuzong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuzongG/nodejs/issues"
+  },
+  "homepage": "https://github.com/YuzongG/nodejs#readme"
+}
