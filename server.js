@@ -34,8 +34,8 @@ app.post('/login', function (req, res) {
 
    // Query 
     var request = new sql.Request();
-    request.query(" if ('" + usermail + "'<>all(select [Email] from [user]) or '" + 
-      password + "' <>all(select [Password] from [user])) select 1 as result else select 0 as result", function(err, recordsets, returnValue) {
+    request.query(" if ('" + usermail + "'= any(select [Email] from [user]) AND '" + 
+      password + "'= (select [password] from [user] where '"+usermail+"'= [Email])) select 0 as result else select 1 as result", function(err, recordsets, returnValue) {
     // ... error checks
     console.log(recordsets[0]);
     console.log(recordsets[0].result);
