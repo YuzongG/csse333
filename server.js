@@ -32,11 +32,12 @@ app.post('/login', function (req, res) {
     // Query
     console.log("You are in the database");
 
-   // Query 
+   // Query - returns 0 if user is in the table 1 if not
     var request = new sql.Request();
-    request.query(" if ('" + usermail + "'= any(select [Email] from [user]) AND '" + 
-      password + "'= (select [password] from [user] where '"+usermail+"'= [Email])) select 0 as result else select 1 as result", function(err, recordsets, returnValue) {
-    // ... error checks
+    request.query("EXEC User_Verification '"+usermail+"','"+password+"'", 
+    	function(err, recordsets, returnValue) {
+
+    // ... error checks 
     console.log(recordsets[0]);
     console.log(recordsets[0].result);
 
@@ -45,7 +46,11 @@ app.post('/login', function (req, res) {
     if (recordsets[0].result == 0 ){
       console.log("login successfully");
     }
-    else {
+    else if(recordsets[0].result == 1){
+    	console.log("Invalid Password");
+    }
+    else
+    {
       console.log("login failed");
     }
     });
