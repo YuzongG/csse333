@@ -2,6 +2,7 @@ var sql = require('mssql');
 var http = require('http'),
 fs = require('fs');
 var express = require('express');
+var handlebars = require('handlebars');
 var app = express();  
 var bodyParser = require('body-parser');
 
@@ -42,9 +43,23 @@ app.post('/login', function (req, res) {
     console.log(recordsets[0].result);
 
 
+
+
     //determine if login successfully
     if (recordsets[0].result == 0 ){
       console.log("login successfully");
+        var userinfo = {
+        //  stick in data from the database HERE!!!!!!!!
+            username: usermail,
+            //Lname: "David"
+        };
+        //res.sendFile(__dirname + "/home/loggedIn.html");
+        fs.readFile("home/loggedIn.html", "utf-8", function(error, source){
+            var template1 = handlebars.compile(source);
+            var html = template1(userinfo);
+            res.send(html);
+
+        });
     }
     else if(recordsets[0].result == 1){
     	console.log("Invalid Password");
