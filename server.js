@@ -30,6 +30,7 @@ app.post('/goback',function(req,res){
     res.sendFile(__dirname + '/home/index.html');
 
 });
+
 app.post('/signup', function(req,res){
     //console.log(req.body);
      res.sendFile(__dirname+'/home/signup.html');
@@ -42,6 +43,62 @@ app.post('/signup', function(req,res){
 
      //    });
 
+});
+app.post('/adduser',function(req,res){
+    console.log(req.body);
+  usermail = req.body.usermail
+  password = req.body.password
+
+  sql.connect(config).then(function() {
+    // Query
+    console.log("You are in the database");
+
+   // Query - returns 0 if user is in the table 1 if not
+    var request = new sql.Request();
+    request.query("EXEC Check_User_Email '"+usermail+"'", 
+        function(err, recordsets, returnValue) {
+
+    // ... error checks 
+    console.log(recordsets[0]);
+    console.log(recordsets[0].result);
+
+
+
+
+    //determine if login successfully
+    if (recordsets[0].result == 0 ){
+      console.log("Adding User to Database");
+        var userinfo = {
+        //  stick in data from the database HERE!!!!!!!!
+            username: usermail,
+            password: password,
+            //Lname: "David"
+        };
+        request.query("Insert into [User] Values('"+usermail+"','"+password+"',0)")
+        //res.sendFile(__dirname + "/home/loggedIn.html");
+        
+    }
+    else if(recordsets[0].result == 1){
+        console.log("User Already Exist");
+    }
+    else
+    {
+      console.log("Invalid e-mail address format");
+    }
+    });
+
+
+    // ES6 Tagged template literals (experimental)
+
+    //sql.query`select * from mytable where id = ${value}`.then(function(recordset) {
+    //    console.dir(recordset);
+    //}).catch(function(err) {
+        // ... query error checks
+    //});
+    }).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
 });
 app.post('/login', function (req, res) {
   console.log(req.body);
