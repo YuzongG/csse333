@@ -22,9 +22,27 @@ var config = {
 // GET method route
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/home/index.html');
+
 });
 
 // POST method route
+app.post('/goback',function(req,res){
+    res.sendFile(__dirname + '/home/index.html');
+
+});
+app.post('/signup', function(req,res){
+    //console.log(req.body);
+     res.sendFile(__dirname+'/home/signup.html');
+     // fs.readFile("home/signup.html", "utf-8", function(error, source){
+     //        //var template1 = handlebars.compile(source);
+     //        // var html = template1(userinfo);
+     //        if(err){
+     //            return console.log(err)
+     //        }
+
+     //    });
+
+});
 app.post('/login', function (req, res) {
   console.log(req.body);
   usermail = req.body.usermail
