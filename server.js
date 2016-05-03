@@ -32,16 +32,7 @@ app.post('/goback',function(req,res){
 });
 
 app.post('/signup', function(req,res){
-    //console.log(req.body);
      res.sendFile(__dirname+'/home/signup.html');
-     // fs.readFile("home/signup.html", "utf-8", function(error, source){
-     //        //var template1 = handlebars.compile(source);
-     //        // var html = template1(userinfo);
-     //        if(err){
-     //            return console.log(err)
-     //        }
-
-     //    });
 
 });
 app.post('/adduser',function(req,res){
@@ -132,7 +123,6 @@ app.post('/login', function (req, res) {
             var template1 = handlebars.compile(source);
             var html = template1(userinfo);
             res.send(html);
-
         });
     }
     else if(recordsets[0].result == 1){
