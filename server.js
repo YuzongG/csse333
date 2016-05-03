@@ -69,14 +69,13 @@ app.post('/adduser',function(req,res){
     if (recordsets[0].result == 0 ){
       console.log("Adding User to Database");
         var userinfo = {
-        //  stick in data from the database HERE!!!!!!!!
             username: usermail,
             password: password,
-            //Lname: "David"
+
         };
         request.query("Insert into [User] Values('"+usermail+"','"+password+"',0)")
-        //res.sendFile(__dirname + "/home/loggedIn.html");
-        
+
+        res.sendFile(__dirname + '/home/index.html');
     }
     else if(recordsets[0].result == 1){
         console.log("User Already Exist");
