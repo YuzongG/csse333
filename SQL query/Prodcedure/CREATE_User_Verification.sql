@@ -12,13 +12,13 @@ GO
 	Proc Name: User_Verification Proc 
 		Verify if user information given is valid in User table.
 **/
-CREATE PROCEDURE [dbo].[User_Verification]
+ALTER PROCEDURE [dbo].[User_Verification]
 (@UserEmail varchar(60), @Password varchar(16))
 AS
 ----check if e-mail is in appropriate format----
 IF @UserEmail NOT LIKE '_%@__%.__%'
   BEGIN
-  PRINT(N'Email Address has to follow __@_._  format')
+  PRINT(N'Email Address has to follow _@__.__  format')
   SELECT -1 AS result
   END
 ------Check if Email address is in User table-------
