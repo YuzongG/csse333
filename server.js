@@ -90,6 +90,7 @@ app.post('/adduser',function(req,res){
         console.log("It's not in database");
     });
 });
+
 app.post('/login', function (req, res) {
   console.log(req.body);
   usermail = req.body.usermail
@@ -116,7 +117,6 @@ app.post('/login', function (req, res) {
         var userinfo = {
         //  stick in data from the database HERE!!!!!!!!
             username: usermail,
-            //Lname: "David"
         };
         //res.sendFile(__dirname + "/home/loggedIn.html");
         fs.readFile("home/loggedIn.html", "utf-8", function(error, source){
@@ -126,7 +126,14 @@ app.post('/login', function (req, res) {
         });
     }
     else if(recordsets[0].result == 1){
-    	console.log("Invalid Password");
+ ////////////////I was trying to show message when password invalid ///////////
+        
+            
+            var msg = {msg:"assadf"}//'<script type="text/javascript"> function showIt() {document.getElementById("hide").style.visibility = "visible";}    function hideIt(){ document.getElementById("hide").style.visibility="hidden";}  setTimeout("showIt()" , 1000); setTimeout("hideIt()" , 2000); </script>';
+            req.send(msg);
+        console.log("Invalid Password");
+
+
     }
     else
     {

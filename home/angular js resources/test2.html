@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<title>DHTML Test</title>
+<style>
+  .visi1 { visibility:"visible" }
+  .visi2 { visibility:"hidden" }
+  .disp1 { display:"block" }
+  .disp2 { display:"none" }
+</style>
+</head>
+
+<body>
+
+
+
+<div align="center"><center>
+
+
+		
+    
+        <p onMouseOver="HideMe3.style.visibility='hidden'"
+           onMouseOut="HideMe3.style.visibility='visible'">
+           Move the mouse over this text to make the following
+           text disappear.
+        </p>
+        <div id="HideMe3"> <p>DHTML using VISIBILITY</p> </div>
+
+
+ 
+        <p onMouseOver="HideMe4.style.display='none'"
+           onMouseOut="HideMe4.style.display='block'">
+           Move the mouse over this text to make the following
+           text disappear.
+        </p>
+        <div id="HideMe4"> <p>DHTML using DISPLAY</p> </div>
+        <p>When the DISPLAY text disappears, this text moves up.</p>
+    
+
+</center>
+</div>
+</body>
+</html>
