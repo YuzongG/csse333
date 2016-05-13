@@ -31,8 +31,7 @@ exports.dologin = function(req,res){
 
     // ... error checks 
     console.log("login:");
-    console.log(usermail);
-    console.log(password);
+
     console.log(recordsets[0]);
     console.log(recordsets[0].result);
 
@@ -47,7 +46,8 @@ exports.dologin = function(req,res){
             username: usermail,
             //Lname: "David"
         };
-        res.send(usermail + ' Login successfully');
+        res.render('mainpage');
+
         //res.sendFile(__dirname + "/home/loggedIn.html", usermail);
         
     }

@@ -4,6 +4,7 @@ var crypto = require('crypto');
 /* GET home page. */
 users = require('./users');
 regi = require('./reg');
+mainpage = require('./mainpage')
 
 exports.route = function(app){
 	app.get('/login', login);
@@ -11,6 +12,12 @@ exports.route = function(app){
 	app.get('/reg', reg);
 	app.post('/reg',doreg);
 	app.post('/back',regback);
+	app.get('/mainpage', getin);
+};
+
+
+getin = function(req,res) {
+	return mainpage.show(req,res);
 };
 
 login = function(req,res) {
