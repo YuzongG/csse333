@@ -13,8 +13,14 @@ exports.route = function(app){
 	app.post('/reg',doreg);
 	app.post('/back',regback);
 	app.get('/mainpage', getin);
+	app.get('/mainpage/getHotel', getHotel);
+
 };
 
+getHotel = function(req,res){
+	console.log("get hotel right now");
+	return mainpage.getHotel(req,res);
+};
 
 getin = function(req,res) {
 	return mainpage.show(req,res);

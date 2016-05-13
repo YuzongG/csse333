@@ -46,7 +46,7 @@ exports.dologin = function(req,res){
             username: usermail,
             //Lname: "David"
         };
-        res.render('mainpage');
+        res.render('mainpage',{Name:usermail});
 
         //res.sendFile(__dirname + "/home/loggedIn.html", usermail);
         
