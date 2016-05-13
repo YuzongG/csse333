@@ -1,23 +1,17 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "test",
-  "main": "index.js",
+  "name": "testjade",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YuzongG/nodejs.git"
-  },
-  "keywords": [
-    "123qwe"
-  ],
-  "author": "yuzong",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/YuzongG/nodejs/issues"
-  },
-  "homepage": "https://github.com/YuzongG/nodejs#readme"
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
+  }
 }
