@@ -1,18 +1,11 @@
 extends layout
 
 block content
-	ul 
-		each i in [0,1]
-			ul
-				each val in results[i]
-					li=val 
-				br
 
---!
-	ul
-		each i in results.length
-			ul
-				each val in results[i]
-					li=val
-
+	- for (var i = 0; i < results.length; ++i) {
+		ul
+			each val in results[i]
+				li=val 
+			br
+	- }
 
