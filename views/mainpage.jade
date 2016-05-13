@@ -5,6 +5,13 @@ block content
 	div.hero-unit
 		h1 Korean Guide
 		P Get information here
+	form.form-forizontal(method = "post",action="/mainpage/searchRest")
+		div.control-group
+			label.control-label(for = "search") Restaurant Name Here
+			div.controls
+				input.input-xlarge#search(type = "text", name = "search")
+			div.form-actions
+				button.btn.btn-primary#searchbtn Search Now
 	div.row
 		div.span4
 			div.well.searchWay

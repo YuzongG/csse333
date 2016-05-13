@@ -14,9 +14,18 @@ exports.route = function(app){
 	app.post('/back',regback);
 	app.get('/mainpage', getin);
 	app.get('/mainpage/getHotel', getHotel);
+	app.get('/mainpage/searchRest',searchRest);
+	app.post('/mainpage/searchRest',doSearch);
 
 };
 
+searchRest = function(req,res){
+	console.log("Search now");
+	return mainpage.searchRest(req,res);
+};
+doSearch = function(req,res){
+	return mainpage.doSearch(req,res);
+};
 getHotel = function(req,res){
 	console.log("get hotel right now");
 	return mainpage.getHotel(req,res);

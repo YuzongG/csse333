@@ -36,6 +36,21 @@ exports.show = function(req, res){
 //         console.log("It's not in database");
 //     });
 // });
+// exports.searchRest = function(req, res){
+
+// 	sql.connect(config).then(function(){
+// 		var request = new sql.Request();
+// 		request.query("EXEC SEARCH IHD", function(err,recordsets,returnvalue){
+// 			console.log(recordsets);
+// 			myList2=recordsets;
+// 			res.render('hotel',{title:'Hotels',results:myList2});
+// 		});
+// 	}).catch(function(err){
+// 		console.log("It's not in database");
+// 	});
+// };
+
+
 
 exports.getHotel = function(req, res){
 	sql.connect(config).then(function() {
@@ -50,5 +65,32 @@ exports.getHotel = function(req, res){
         console.log("It's not in database");
     });
 };
+exports.searchRest = function(req, res){
+	console.log("I am here")
+	res.render('hotel.jade', {title: 'Search'});
+};
 
+
+exports.doSearch = function (req, res) {
+
+	search = req.body.search
+
+  	sql.connect(config).then(function() {
+	    // Query
+	    console.log("You are in the database");
+
+	   // Query - returns 0 if user is in the table 1 if not
+	    var request = new sql.Request();
+	    sql.connect(config).then(function(){
+			var request = new sql.Request();
+			request.query("EXEC SEARCH "+search+"", function(err,recordsets,returnvalue){
+				console.log(recordsets);
+				myList2=recordsets;
+				res.render('hotel',{title:'Hotels',results:myList2});
+			});
+		}).catch(function(err){
+			console.log("It's not in database");
+		});
+	});
+};
 
