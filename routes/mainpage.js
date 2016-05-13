@@ -43,7 +43,7 @@ exports.getHotel = function(req, res){
 		request.query("EXEC Show_hotel",function(err,recordsets,returnvalue){
 			console.log(recordsets);
 			myList = recordsets;
-			res.render('hotel', {title: 'Hotels', results:myList[0].Hotel_Name});
+			res.render('hotel', {title: 'Hotels', results:myList});
 		});
 	}).catch(function(err) {
     // ... connect error checks
