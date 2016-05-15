@@ -1,10 +1,15 @@
 extends layout
 
 block content
-	- for (var i = 0; i < results.length; ++i) {
-		ul
+	table(border=1)
+		- for (var i = 0; i < results.length; ++i) {
+		tbody
 			each val in results[i]
-				li=val 
-			br
-	- }
+				td=val
+			tr
+		- }
+
+
+
+
 
