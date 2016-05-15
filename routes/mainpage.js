@@ -74,6 +74,9 @@ exports.searchRest = function(req, res){
 exports.doSearch = function (req, res) {
 
 	search = req.body.search
+	if(search==""){//handles null input value
+		search="''";
+	}
 
   	sql.connect(config).then(function() {
 	    // Query
