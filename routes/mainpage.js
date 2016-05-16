@@ -58,7 +58,7 @@ exports.getHotel = function(req, res){
 		request.query("EXEC Show_hotel",function(err,recordsets,returnvalue){
 			console.log(recordsets);
 			myList = recordsets;
-			res.render('hotel', {title: 'Hotels', results:myList});
+			res.render('hotel', {title: 'Hotels', results:myList, columns:[{0:'Name', 1:'Phone Number', 2:'Introduction', 3:'Rating' }]});
 		});
 	}).catch(function(err) {
     // ... connect error checks
@@ -89,7 +89,7 @@ exports.doSearch = function (req, res) {
 			request.query("EXEC SEARCH "+search+"", function(err,recordsets,returnvalue){
 				console.log(recordsets);
 				myList2=recordsets;
-				res.render('hotel',{title:'Search Result for '+search,results:myList2});
+				res.render('hotel',{title:'Search Result for '+search,results:myList2, columns:[{0:'Name', 1:'Food', 2:'Phone Number', 4: 'Rating', 5: 'Serving Type'}]});
 			});
 		}).catch(function(err){
 			console.log("It's not in database");
