@@ -89,7 +89,7 @@ exports.doSearch = function (req, res) {
 			request.query("EXEC SEARCH "+search+"", function(err,recordsets,returnvalue){
 				console.log(recordsets);
 				myList2=recordsets;
-				res.render('hotel',{title:'Hotels',results:myList2});
+				res.render('hotel',{title:'Search Result for '+search,results:myList2});
 			});
 		}).catch(function(err){
 			console.log("It's not in database");
