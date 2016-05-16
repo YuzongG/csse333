@@ -2,13 +2,14 @@ extends layout
 
 block content
 	h1 #{title}
-	table(border=1)
+	table.table.table-striped
+		thead
 		- for (var i = 0; i < columns.length; ++i) {	
 			each val in columns[i]
 				th=val
 		- }
-		- for (var i = 0; i < results.length; ++i) {
 		tbody
+		- for (var i = 0; i < results.length; ++i) {
 			each val in results[i]
 				td=val
 			tr
