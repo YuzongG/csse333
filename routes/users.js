@@ -48,29 +48,15 @@ exports.dologin = function(req,res){
     if (recordsets[0].result == 0 ) {
         console.log("login successfully");
         token = jwt.sign({user: usermail}, 'a-secret')
-
+        console.log("token: ");             
         console.log(token);
-        var userinfo = {
-            //  stick in data from the database HERE!!!!!!!!
-            username: usermail,
-        };
-        res.cookie('user', token, {expires: new Date(1)}).render('mainpage',{Name:usermail});
+        res.cookie('user', token).render('mainpage',{Name:usermail});
 
 
         //res.sendFile(__dirname + "/home/loggedIn.html", usermail);
         
     }
     else if(recordsets[0].result == 1){
-      console.log("login successfully");
-        token = jwt.sign({user: usermail}, 'a-secret')
-
-        console.log(token);
-        var userinfo = {
-            username: usermail,
-        };
-        res.cookie('user', token, {expires: new Date(1)}).render('mainpageAdmin',{Name:usermail});
-    }
-    else if(recordsets[0].result == 2){
     	console.log("Invalid Password");
       res.send("Invalid Password");
     }

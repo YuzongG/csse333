@@ -31,9 +31,13 @@ app.use(express.static(path.join(__dirname, '/node_modules')));
 app.use(function(req, res, next) {
   // var err = new Error('Not Found');
   // err.status = 404;
+console.log("cookies: ");
 console.log(req.cookies);
+console.log(req.path);
   if(req.path == '/' || req.path =='/reg' || req.path =='/login'){
     next();
+    console.log(req.cookies);
+    console.log("here");
   }
   else if(!req.cookies["user"]){
     res.send("Not authorized");
