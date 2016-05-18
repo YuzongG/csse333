@@ -39,8 +39,7 @@ exports.dologin = function(req,res){
     console.log("login:");
 
     console.log(recordsets[0]);
-    console.log(recordsets[0].result);
-
+    console.log(usermail);
 
 
 

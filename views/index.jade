@@ -1,11 +1,99 @@
 extends layout
-
 block content
-		div.hero-unit
-			h1#indexHeader Korean Guide --Team TBD
-			a(href='/login').btn.btn-large.btn-primary#indexLogin Click to Login
-			br
-			a(href='/reg').btn.btn-large.btn-primary#indexLogin Sign Up
+    //Carousel
+      ==================================================
+    #myCarousel.carousel.slide(data-ride='carousel')
+      // Indicators
+      ol.carousel-indicators
+        li.active(data-target='#myCarousel', data-slide-to='0')
+        li(data-target='#myCarousel', data-slide-to='1')
+        li(data-target='#myCarousel', data-slide-to='2')
+      .carousel-inner(role='listbox')
+        .item.active
+          img.first-slide(src='bootstrap/pics/seoul.png', alt='First slide')
+          .container
+            .carousel-caption
+              h1 Korean Guide
+              p
+                |A travel guide that helps you enjoy in South Korea
+              p
+                a.btn.btn-lg.btn-primary(href='/reg', role='button') Sign up today
+        .item
+          img.second-slide(src='bootstrap/pics/hotel.jpg', lat = 'Second slide')
+          .container
+            .carousel-caption
+              h1 Hotels
+              p
+                |Korean Guide will help you find the best hotel that meets your need
+              p
+                a.btn.btn-lg.btn-primary(href='/mainpage/getHotel', role='button') Learn more
+        .item
+          img.third-slide(src= 'bootstrap/pics/food.jpg', alt='Third slide')
+          .container
+            .carousel-caption
+              h1 Restaurant
+              p
+                |Enjoy the Korean food
+              p
+                a.btn.btn-lg.btn-primary(href='/mainpage/searchRest', role='button') See Restaurants
+      a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+        span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+        span.sr-only Previous
+      a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+        span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+        span.sr-only Next
+    // /.carousel
+    //
+      Marketing messaging and featurettes
+      ==================================================
+    // Wrap the rest of the page in another container to center all the content.
+    .container.marketing
+      // Three columns of text below the carousel
+      .row
+        .col-lg-4
+          img.img-circle(src='/bootstrap/pics/help.jpeg', alt='Generic placeholder image', width='150', height='150')
+          h2 Question
+          p(style= "font-size:18px;") 
+            |If you have any problems, please email us
+          p
+            a.btn.btn-default(href='#', role='button') View contacts »
+        // /.col-lg-4
+        .col-lg-4
+          img.img-circle(src='/bootstrap/pics/review.png', alt='Generic placeholder image', width='150', height='150')
+          h2 Review
+          p(style= "font-size:18px;")
+            |Make a review to a hotel or restaurant
+          p
+            a.btn.btn-default(href='#', role='button') Make a review »
+        // /.col-lg-4
+        .col-lg-4
+          img.img-circle(src='/bootstrap/pics/trans.png', alt='Generic placeholder image', width='150', height='150')
+          h2 Transportations
+          p
+            |find the best transportation 
+          p
+            a.btn.btn-default(href='http://topis.seoul.go.kr/english.jsp', role='button') View details »
+        // /.col-lg-4
+      // /.row
+      
+      // FOOTER
+      footer
+        p
+          | © 2016 Company, TBD Inc. 
+          
+    // /.container
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script.
+      window.jQuery || document.write('<script src="bootstrap/docs/assets/js/vendor/jquery.min.js"><\\/script>')
+    script(src='bootstrap/dist/js/bootstrap.min.js')
+    // Just to make our placeholder images work. Don't actually copy the next line!
+    script(src='bootstrap/docs/assets/js/vendor/holder.min.js')
+
+
 
 
 

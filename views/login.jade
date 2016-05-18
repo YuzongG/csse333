@@ -1,15 +1,16 @@
 extends layout
 block content
-	form.form-forizontal(method = "post")
-		fieldset
-			legend User Login
-			div.control-group
-				label.control-label(for = "usermail") Username
-				div.controls
-					input.input-xlarge#usermail(type = "text", name = "usermail")
-			div.control-group
-				label.control-label(for = "password") Password
-				div.controls
-					input.input-xlarge#password(type = "password", name = "password")
-			div.form-actions
-				button.btn.btn-primary#loginbtn Login
+  form.form-signin(method = "post")
+    h2.form-signin-heading Please sign in
+    fieldset
+      legend
+      div.control-group
+        label.control-label(for = "usermail") Username
+        div.controls
+          input.input-xlarge#usermail(type = "text", name = "usermail")
+      div.control-group
+        label.control-label(for = "password") Password
+        div.controls
+          input.input-xlarge#password(type = "password", name = "password")
+      div.form-actions
+        button.btn.btn-primary#loginbtn Login

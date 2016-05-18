@@ -51,7 +51,7 @@ exports.doreg = function (req, res) {
             password: password,
             //Lname: "David"
         };
-        request.query("Insert into [User] Values('"+usermail+"','"+password+"',0)")
+        request.query("EXEC ADD_USER '"+usermail+"', '"+password+"'");
         //res.sendFile(__dirname + "/home/loggedIn.html");
         res.send("successfully");
     }

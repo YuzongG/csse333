@@ -1,34 +1,44 @@
-html
-	head
-		title= title
-		script(src = "https://www.atlasestateagents.co.uk/javascript/tether.min.js")
-		script(src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
-		script(src = "/bootstrap/dist/js/bootstrap.min.js")
-		link(href="/bootstrap/dist/css/bootstrap.min.css",rel = "stylesheet")
-		body
-		block contentdoctype html
-	body
-	nav.navbar.navbar-default( role="navigation" )
-		.navbar-header
-			button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#navbar-inverse", aria-expanded="false", aria-controls="navbar")
-				span.sr-only Toggle navigation
-				span.icon-bar
-				span.icon-bar
-				span.icon-bar
-			a.navbar-brand(href="#") Korean Guide 
-			ul.nav.navbar-nav
-				li.active: a( href="/") Home
-				li: a( href="/reg" ) SignUp
-				li: a( href="#contact" ) Contact
-				li.dropdown
-					a.dropdown-toggle( href="#", data-toggle="dropdown", role="button", aria-expanded="false" ) Dropdown 
-						span.caret
-					ul.dropdown-menu( role="menu" )
-						li: a( href="#" ) Action
-						li: a( href="#" ) Another action
-						li: a( href="#" ) Something else here
-						li.divider
-						li.dropdown-header Nav header
-						li: a( href="#" ) Separated link
-						li: a( href="#" ) One more separated link
-	block content
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='icon', href='../../favicon.ico')
+    script(src = "https://www.atlasestateagents.co.uk/javascript/tether.min.js")
+    script(src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+    script(src = "/bootstrap/dist/js/bootstrap.min.js")
+    title Korean Guide
+    // Custom styles for this template
+    link(href="/bootstrap/docs/examples/carousel/carousel.css", rel='stylesheet')
+    link(href="/bootstrap/dist/css/bootstrap.min.css",rel = "stylesheet")
+    link(href="/bootstrap/dist/examples/signin/signin.css",rel="stylesheet")
+  //
+    NAVBAR
+    ==================================================
+  body
+    .navbar-wrapper
+      .container
+        nav.navbar.navbar-inverse.navbar-static-top
+          .container
+            .navbar-header
+              button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='#') Korean Guide
+            #navbar.navbar-collapse.collapse
+              ul.nav.navbar-nav
+                li.active
+                  a(href='/') Home
+                li
+                  a(href='/login') Login
+                li
+                  a(href='reg') Sign up
+                li
+                  a(href='#') Review
+        block content

@@ -1,20 +1,20 @@
 extends layout
 
 block content
-	fieldset
-		legend User Signup
-		form.form-forizontal(method = "post",action="/reg")
-			div.control-group
-				label.control-label(for = "usermail") Username
-				div.controls
-					input.input-xlarge#usermail(type = "text", name = "usermail")
-			div.control-group
-				label.control-label(for = "password") Password
-				div.controls
-					input.input-xlarge#password(type = "password", name = "password")
-			div.form-actions
-				button.btn.btn-primary#regbtn Register
-		a(href = "/")
-			button.btn.btn-primary#back Back
+			fieldset
+				legend User Signup
+				form.form-forizontal(method = "post",action="/reg")
+					div.control-group
+						label.control-label(for = "usermail") Username
+						div.controls
+							input.input-xlarge#usermail(type = "text", name = "usermail")
+					div.control-group
+						label.control-label(for = "password") Password
+						div.controls
+							input.input-xlarge#password(type = "password", name = "password")
+					div.form-actions
+						button.btn.btn-primary#regbtn Register
+				a(href = "/")
+					button.btn.btn-primary#back Back
 
 //		p.alert You don't have the authorization to view this page
