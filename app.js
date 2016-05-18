@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sql = require('mssql');
+var jwt = require('jsonwebtoken');
 http = require('http');
 
 
@@ -24,19 +25,36 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use(express.static(path.join(__dirname, '/node_modules')));
+
+// Middleware
+app.use(function(req, res, next) {
+  // var err = new Error('Not Found');
+  // err.status = 404;
+console.log(req.cookies);
+  if(req.path == '/' || req.path =='/reg' || req.path =='/login'){
+    next();
+  }
+  else if(!req.cookies["user"]){
+    res.send("Not authorized");
+  }
+  else {
+    data = jwt.verify(req.cookies["user"], 'a-secret')
+    if (data["user"] == null){
+      res.send("Not authorized");
+    }
+    else{
+      next();
+    }
+  }
+
+});
+
 // app.use('/', routes);
 // app.use('/users', users);
 // app.use(app.router);
 routes.route(app);
-app.use(express.static(path.join(__dirname, '/node_modules')));
 
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  // var err = new Error('Not Found');
-  // err.status = 404;
-  next();
-});
 
 // error handlers
 

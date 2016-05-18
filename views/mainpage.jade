@@ -4,7 +4,7 @@ block content
 	h1 Hello #{Name}
 	div.hero-unit
 		h1 Korean Guide
-		P Get information here
+		a(href='/mainpage/logout').btn.btn-primary#checkHotel Logout
 	form.form-forizontal(method = "post",action="/mainpage/searchRest")
 		div.control-group
 			label.control-label(for = "search") Restaurant Name Here

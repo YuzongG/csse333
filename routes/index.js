@@ -16,7 +16,7 @@ exports.route = function(app){
 	app.get('/mainpage/getHotel', getHotel);
 	app.get('/mainpage/searchRest',searchRest);
 	app.post('/mainpage/searchRest',doSearch);
-
+	app.get('/mainpage/logout', logout);
 };
 
 searchRest = function(req,res){
@@ -48,11 +48,13 @@ reg = function(req,res){
 };
 
 doreg = function(req,res){
-	console.log("here");
 	return regi.doreg(req,res);
 };
 
 regback = function(req,res){
-	console.log("here2");
 	return regi.back(req,res);
+};
+
+logout = function(req,res){
+	return mainpage.logout(req,res);
 };

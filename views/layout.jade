@@ -1,14 +1,12 @@
-head
-	title= title
-	script(src = "https://www.atlasestateagents.co.uk/javascript/tether.min.js")
-	script(src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
-	script(src = "/bootstrap/dist/js/bootstrap.min.js")
-	link(href="/bootstrap/dist/css/bootstrap.min.css",rel = "stylesheet")
-	body
-	block contentdoctype html
 html
 	head
-	title= title
+		title= title
+		script(src = "https://www.atlasestateagents.co.uk/javascript/tether.min.js")
+		script(src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+		script(src = "/bootstrap/dist/js/bootstrap.min.js")
+		link(href="/bootstrap/dist/css/bootstrap.min.css",rel = "stylesheet")
+		body
+		block contentdoctype html
 	body
 	nav.navbar.navbar-default( role="navigation" )
 		.navbar-header
@@ -17,10 +15,10 @@ html
 				span.icon-bar
 				span.icon-bar
 				span.icon-bar
-			a.navbar-brand(href="#") Project name
+			a.navbar-brand(href="#") Korean Guide 
 			ul.nav.navbar-nav
 				li.active: a( href="/") Home
-				li: a( href="#about" ) About
+				li: a( href="/reg" ) SignUp
 				li: a( href="#contact" ) Contact
 				li.dropdown
 					a.dropdown-toggle( href="#", data-toggle="dropdown", role="button", aria-expanded="false" ) Dropdown 

@@ -66,7 +66,6 @@ exports.getHotel = function(req, res){
     });
 };
 exports.searchRest = function(req, res){
-	console.log("I am here")
 	res.render('hotel.jade', {title: 'Search'});
 };
 
@@ -95,5 +94,9 @@ exports.doSearch = function (req, res) {
 			console.log("It's not in database");
 		});
 	});
+};
+
+exports.logout = function(req,res){
+	res.clearCookie("user").redirect('/');
 };
 

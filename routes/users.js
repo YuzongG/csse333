@@ -2,7 +2,12 @@ var express = require('express');
 var sql = require('mssql');
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
+var cookieParser = require('cookie-parser');
+
+
 /* GET users listing. */
+
 
 var config = {
     user: 'gaoy1',
@@ -11,6 +16,7 @@ var config = {
     database: 'MitchGaoJim',
     parseJSON: true
 };
+
 
 exports.login = function(req,res){
 	res.render('login.jade',{title: 'User Login'});
@@ -39,14 +45,18 @@ exports.dologin = function(req,res){
 
 
     //determine if login successfully
-    if (recordsets[0].result == 0 ){
-      console.log("login successfully");
+    if (recordsets[0].result == 0 ) {
+        console.log("login successfully");
+        token = jwt.sign({user: usermail}, 'a-secret')
+
+        console.log(token);
         var userinfo = {
-        //  stick in data from the database HERE!!!!!!!!
+            //  stick in data from the database HERE!!!!!!!!
             username: usermail,
             //Lname: "David"
         };
-        res.render('mainpage',{Name:usermail});
+        res.cookie('user', token, {expires: new Date(1)}).render('mainpage',{Name:usermail});
+
 
         //res.sendFile(__dirname + "/home/loggedIn.html", usermail);
         
