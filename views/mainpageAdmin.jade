@@ -1,0 +1,28 @@
+extends layout
+
+block content
+	h1 Hello #{Name} You are Admin
+	div.hero-unit
+		h1 Korean Guide
+		a(href='/mainpage/logout').btn.btn-primary#checkHotel Logout
+	form.form-forizontal(method = "post",action="/mainpage/searchRest")
+		div.control-group
+			label.control-label(for = "search") Restaurant Name Here
+			div.controls
+				input.input-xlarge#search(type = "text", name = "search")
+			div.form-actions
+				button.btn.btn-primary#searchbtn Search Now
+	div.row
+		div.span4
+			div.well.searchWay
+				h3 Hotels
+				form.form-forizontal(method = "post",action = "/getHotel")
+					a(href='/mainpage/getHotel').btn.btn-primary#checkHotel click
+		div.span4
+			div.well.searchWay
+				h3 Restaurants
+				a(href='/profile').btn.btn-primary#search  click
+		div.span4
+			div.well.searchWay
+				h3 Entertainments
+				a(href='/fileRequest').btn.btn-primary#search  click
