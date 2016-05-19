@@ -20,7 +20,10 @@ exports.route = function(app){
 	app.get('/contact',contact);
 	app.get('/mainpage/getRestaurant', getRest);
 	app.get('/mainpage/getEntertain',getEntertain);
-	app.get('/mainpage/review',makeReview);
+	app.get('/mainpage/review',review);
+	app.post('/mainpage/review',makeReview);
+	app.get('/changePassword',changePassword);
+	app.post('/changePassword',doChangePassword);
 };
 
 searchRest = function(req,res){
@@ -62,7 +65,12 @@ regback = function(req,res){
 logout = function(req,res){
 	return mainpage.logout(req,res);
 };
-
+changePassword = function(req,res){
+	return users.changePassword(req,res);
+};
+doChangePassword = function(req,res){
+	return users.doChangePassword(req,res);
+};
 contact = function(req,res){
 	res.render('contact');
 };
@@ -74,7 +82,9 @@ getRest = function(req,res){
 getEntertain = function(req,res){
 	return mainpage.getEntertain(req,res);
 };
-
+review = function(req,res){
+	return mainpage.review(req,res);
+};
 makeReview = function(req,res){
 	return mainpage.makeReview(req,res);
 };

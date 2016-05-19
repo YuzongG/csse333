@@ -79,4 +79,51 @@ exports.dologin = function(req,res){
         console.log("It's not in database");
     });
 };
+exports.changePassword = function(req,res){
+    res.render('changePassword.jade',{title: 'Change Password'});
+};
+exports.doChangePassword = function(req,res){
+    usermail = req.body.usermail;
+    oldPassword = req.body.oldPassword;
+    newPassword = req.body.newPassword;
 
+    sql.connect(config).then(function() {
+    // Query
+    console.log("You are in the database");
+    console.log(usermail);
+    console.log(newPassword);
+    console.log(oldPassword);
+   // Query - returns 0 if user is in the table 1 if not
+    var request = new sql.Request();
+    request.query("EXEC Change_Password '"+usermail+"','"+oldPassword+"','"+newPassword+"'", function(err,recordsets,returnvalue) {
+
+    console.log("pwd:");
+
+    console.log(recordsets[0]);
+
+    //determine if login successfully
+    if(recordsets[0].result == 0){
+        res.render('mainpage',{Name:usermail});
+        console.log("changed");
+      res.send("changed");
+    }
+    else
+    {
+      console.log("failed");
+      res.send("failed");
+    }
+    });
+
+
+    // ES6 Tagged template literals (experimental)
+
+    //sql.query`select * from mytable where id = ${value}`.then(function(recordset) {
+    //    console.dir(recordset);
+    //}).catch(function(err) {
+        // ... query error checks
+    //});
+    }).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+};

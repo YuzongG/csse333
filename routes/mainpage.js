@@ -96,6 +96,8 @@ exports.doSearch = function (req, res) {
 	});
 };
 
+
+
 exports.logout = function(req,res){
 	if(req.cookies["user"]){
 		res.clearCookie("user").redirect('/');
@@ -104,13 +106,12 @@ exports.logout = function(req,res){
 		res.render('infor',{message:'you are already logged out'});
 	}
 };
-
 exports.getRest = function(req,res){
 	sql.connect(config).then(function() {
 		var request = new sql.Request();
-		request.query("EXEC Show_view Restaurants",function(err,recordsets,returnvalue){
+		request.query("EXEC Show_view RestaurantView",function(err,recordsets,returnvalue){
 			myList = recordsets;
-			res.render('hotel', {title: 'Restaurants', results:myList, columns:[{0:'Restaurant', 1:'Food', 2:'Phone Number', 3:'Rating', 4:'Serving Type'}]});
+			res.render('hotel', {title: 'Restaurants', results:myList, columns:[{0:'Restaurant Name', 1:'Phone Number', 2:'Rating (5.0)', 3:'Details', 4:'Address',5:'Served by'}]});
 		});
 	}).catch(function(err) {
     // ... connect error checks
