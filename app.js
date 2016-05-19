@@ -39,6 +39,9 @@ app.use(function(req, res, next) {
     console.log("here");
   }
   else if(!req.cookies["user"]){
+    if(req.path == '/changePassword'){
+      res.render('infor', {message:'You have to login before you change the password!'})
+    }
     res.render('infor',{message:'Not authorized'});
   }
   else {
