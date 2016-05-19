@@ -1,13 +1,13 @@
 extends layout
 
 block content
+	br
 	h1 Hello #{Name}
-	div.hero-unit
-		h1 Korean Guide
-		a(href='/mainpage/logout').btn.btn-primary#checkHotel Logout
+	br
+	h1 Korean Guide
 	form.form-forizontal(method = "post",action="/mainpage/searchRest")
 		div.control-group
-			label.control-label(for = "search") Restaurant Name Here
+			label.control-label(for = "search") Hungury? Search a Restaurant!
 			div.controls
 				input.input-xlarge#search(type = "text", name = "search")
 			div.form-actions

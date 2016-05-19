@@ -32,7 +32,8 @@ app.use(function(req, res, next) {
   // var err = new Error('Not Found');
   // err.status = 404;
 
-  if(req.path == '/' || req.path =='/reg' || req.path =='/login' ||req.path == '/contact'){
+  if(req.path == '/' || req.path =='/reg' || req.path =='/login' 
+    ||req.path == '/contact'||req.path=='/mainpage/logout'){
     next();
     console.log(req.cookies);
     console.log("here");

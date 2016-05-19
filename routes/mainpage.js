@@ -97,7 +97,12 @@ exports.doSearch = function (req, res) {
 };
 
 exports.logout = function(req,res){
-	res.clearCookie("user").redirect('/');
+	if(req.cookies["user"]){
+		res.clearCookie("user").redirect('/');
+	}
+	else{
+		res.send("you already logged out");
+	}
 };
 
 exports.getRest = function(req,res){
