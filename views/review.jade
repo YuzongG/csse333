@@ -1,0 +1,27 @@
+extends layout
+block content
+  form.form-forizontal(method = "post")
+    br
+    fieldset
+      legend Review
+      div.control-group
+        label.control-label(for='inputReview') Your Email
+        div.controls
+          input#inputEmail.input-xlarge(type='email', name = "usermail", placeholder='Email address', required='', autofocus='')
+      div.control-group
+        label.control-label(for='inputPlace') Place Name
+        div.controls
+          input#inputPlace.input-xlarge(type='text', name = "place", placeholder='Place Name', required='')
+      div.control-group
+        label.control-label(for='inputContent') What do you Want to say?
+        div.controls
+          input#inputContent.input-xlarge(type='text', name = "content", placeholder='Content here', required='')
+      div.control-group
+        label.control-label(for='inputRating') Rating out of 5.0
+        div.controls
+          input#inputRating.input-xlarge(type='number', step='0.1', name = "rating", placeholder='Out of 5.0', required='')
+
+      div.form-actions
+        button.btn.btn-primary#reviewbtn Submit
+  form
+    button.btn-primary.btn-primary(onclick = 'history.go(-1);return true;')#back Back

@@ -49,7 +49,65 @@ exports.show = function(req, res){
 // 		console.log("It's not in database");
 // 	});
 // };
+exports.review = function(req, res){
+	res.render('review.jade', {title: 'Review'});
+};
 
+
+exports.makeReview = function (req, res) {
+    usermail = req.body.usermail;
+    place = req.body.place;
+    content = req.body.content;
+    rating = req.body.rating;
+
+    sql.connect(config).then(function() {
+    // Query
+    console.log("You are in the database");
+    console.log(usermail);
+    console.log(place);
+    console.log(content);
+    console.log(rating);
+   // Query - returns 0 if user is in the table 1 if not
+    var request = new sql.Request();
+    request.query("EXEC INSERT_Review '"+usermail+"','"+place+"','"+content+"','"+rating+"'", function(err,recordsets,returnvalue) {
+
+    console.log("review:");
+
+    console.log(recordsets[0]);
+
+    //determine if login successfully
+    if(recordsets[0].result == 0){
+      res.render('mainpage',{Name:usermail});
+      console.log("changed");
+    }
+    else if(recordsets[0].result == 1){
+      console.log("place name invalid");
+      res.send("place name invalid");
+    }
+    else if(recordsets[0].result == 2){
+      console.log("Invalid Usermail");
+      res.send("Invalid Usermail");
+    }
+    else 
+    {
+      console.log("Rating out of Range");
+      res.send("Rating out of Range");
+    }
+    });
+
+
+    // ES6 Tagged template literals (experimental)
+
+    //sql.query`select * from mytable where id = ${value}`.then(function(recordset) {
+    //    console.dir(recordset);
+    //}).catch(function(err) {
+        // ... query error checks
+    //});
+    }).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+};
 
 
 exports.getHotel = function(req, res){
@@ -131,16 +189,3 @@ exports.getEntertain = function(req,res){
         console.log("It's not in database");
     });
 }
-
-exports.makeReview = function(req,res){
-	sql.connect(config).then(function() {
-		var request = new sql.Request();
-		request.query("EXEC Show_view fun_place",function(err,recordsets,returnvalue){
-			myList = recordsets;
-			res.render('hotel', {title: 'Entertainments', results:myList, columns:[{0:'Entertainment Type', 1:'Name', 2:'Start Time', 3:'Ending Time', 4:'Phone Number', 5:'Rating', 6:'Detail', 7:'Address'}]});
-		});
-	}).catch(function(err) {
-    // ... connect error checks
-        console.log("It's not in database");
-    });
-};
