@@ -12,17 +12,20 @@ block content
 				input.input-xlarge#search(type = "text", name = "search")
 			div.form-actions
 				button.btn.btn-primary#searchbtn Search Now
-	div.row
+	br
+	br
+	br
+	div.row(background-color:"#E4B564")
 		div.span4
 			div.well.searchWay
 				h3 Hotels
 				form.form-forizontal(method = "post",action = "/getHotel")
 					a(href='/mainpage/getHotel').btn.btn-primary#checkHotel check
 		div.span4
-			div.well.searchWay
+			div.well.searchWay1
 				h3 Restaurants
-				a(href='/profile').btn.btn-primary#search  check
+				a(href='/mainpage/getRestaurant').btn.btn-primary#search  check
 		div.span4
-			div.well.searchWay
+			div.well.searchWay2
 				h3 Entertainments
-				a(href='/fileRequest').btn.btn-primary#search  check
+				a(href='/mainpage/getEntertain').btn.btn-primary#search  check

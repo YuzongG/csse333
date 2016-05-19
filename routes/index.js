@@ -17,6 +17,9 @@ exports.route = function(app){
 	app.get('/mainpage/searchRest',searchRest);
 	app.post('/mainpage/searchRest',doSearch);
 	app.get('/mainpage/logout', logout);
+	app.get('/contact',contact);
+	app.get('/mainpage/getRestaurant', getRest);
+	app.get('/mainpage/getEntertain',getEntertain);
 };
 
 searchRest = function(req,res){
@@ -57,4 +60,13 @@ regback = function(req,res){
 
 logout = function(req,res){
 	return mainpage.logout(req,res);
+};
+contact = function(req,res){
+	res.render('contact');
+};
+getRest = function(req,res){
+	return mainpage.getRest(req,res);
+};
+getEntertain = function(req,res){
+	return mainpage.getEntertain(req,res);
 };

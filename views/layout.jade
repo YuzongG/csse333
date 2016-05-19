@@ -15,11 +15,12 @@ html(lang='en')
     // Custom styles for this template
     link(href="/bootstrap/docs/examples/carousel/carousel.css", rel='stylesheet')
     link(href="/bootstrap/dist/css/bootstrap.min.css",rel = "stylesheet")
-    link(href="/bootstrap/dist/examples/signin/signin.css",rel="stylesheet")
+    link(href="/bootstrap/docs/examples/signin/signin.css",rel="stylesheet")
+    link(rel='stylesheet', href='/bootstrap/docs/examples/style.css')
   //
     NAVBAR
     ==================================================
-  body
+  body()
     .navbar-wrapper
       .container
         nav.navbar.navbar-inverse.navbar-static-top
@@ -41,4 +42,14 @@ html(lang='en')
                   a(href='reg') Sign up
                 li
                   a(href='#') Review
-        block content
+        block indexcontent
+                style.
+                  { margin: 0; padding: 0; }
+                  html {
+                  background: url('/bootstrap/pics/background.jpg') no-repeat center center fixed;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  -o-background-size: cover;
+                  background-size: cover;
+                  }
+                block content

@@ -1,16 +1,18 @@
 extends layout
 block content
-  form.form-signin(method = "post")
-    h2.form-signin-heading Please sign in
+  form.form-forizontal(method = "post")
+    br
     fieldset
-      legend
+      legend User Login
       div.control-group
-        label.control-label(for = "usermail") Username
+        label.control-label(for='inputEmail') Email address
         div.controls
-          input.input-xlarge#usermail(type = "text", name = "usermail")
+          input#inputEmail.input-xlarge(type='email', name = "usermail", placeholder='Email address', required='', autofocus='')
       div.control-group
-        label.control-label(for = "password") Password
+        label.control-label(for='inputPassword') Password
         div.controls
-          input.input-xlarge#password(type = "password", name = "password")
+          input#inputPassword.input-xlarge(type='password', name = "password", placeholder='Password', required='')
       div.form-actions
-        button.btn.btn-primary#loginbtn Login
+        button.btn.btn-primary#loginbtn Sign in
+  form
+    button.btn-primary.btn-primary(onclick = 'history.go(-1);return true;')#back Back

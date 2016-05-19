@@ -26,6 +26,8 @@ exports.dologin = function(req,res){
 
   usermail = req.body.usermail
   password = req.body.password
+  console.log(usermail);
+
   sql.connect(config).then(function() {
     // Query
     console.log("You are in the database");
@@ -39,8 +41,6 @@ exports.dologin = function(req,res){
     console.log("login:");
 
     console.log(recordsets[0]);
-    console.log(usermail);
-
 
 
     //determine if login successfully

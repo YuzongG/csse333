@@ -1,5 +1,5 @@
 extends layout
-block content
+block indexcontent
     //Carousel
       ==================================================
     #myCarousel.carousel.slide(data-ride='carousel')
@@ -35,7 +35,7 @@ block content
               p
                 |Enjoy the Korean food
               p
-                a.btn.btn-lg.btn-primary(href='/mainpage/searchRest', role='button') See Restaurants
+                a.btn.btn-lg.btn-primary(href='/mainpage/getRestaurant', role='button') See Restaurants
       a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
         span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
         span.sr-only Previous
@@ -54,9 +54,9 @@ block content
           img.img-circle(src='/bootstrap/pics/help.jpeg', alt='Generic placeholder image', width='150', height='150')
           h2 Question
           p(style= "font-size:18px;") 
-            |If you have any problems, please email us
+            |If you have any problems, email us
           p
-            a.btn.btn-default(href='#', role='button') View contacts »
+            a.btn.btn-default(href='/contact', role='button') View contacts »
         // /.col-lg-4
         .col-lg-4
           img.img-circle(src='/bootstrap/pics/review.png', alt='Generic placeholder image', width='150', height='150')

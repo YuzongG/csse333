@@ -14,8 +14,8 @@ block content
 				td=val
 			tr
 		- }
-	a(href = "/mainpage")
-		button.btn.btn-primary#back Back
+	form
+		button.btn.btn-primary(onclick = 'history.go(-1);return true;')#back Back
 
 
 
