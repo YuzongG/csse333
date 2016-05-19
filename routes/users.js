@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
-
+var email;
 
 /* GET users listing. */
 
@@ -24,10 +24,10 @@ exports.login = function(req,res){
 
 exports.dologin = function(req,res){
 
-  usermail = req.body.usermail
-  password = req.body.password
+  usermail = req.body.usermail;
+  password = req.body.password;
   console.log(usermail);
-
+  email = usermail;
   sql.connect(config).then(function() {
     // Query
     console.log("You are in the database");
@@ -57,12 +57,12 @@ exports.dologin = function(req,res){
     }
     else if(recordsets[0].result == 1){
     	console.log("Invalid Password");
-      res.send("Invalid Password");
+      res.render('infor',{message:'Invalid Password'});
     }
     else
     {
       console.log("login failed");
-      res.send("login failed");
+      res.render('infor',{message:'login failed'});
     }
     });
 
@@ -83,7 +83,7 @@ exports.changePassword = function(req,res){
     res.render('changePassword.jade',{title: 'Change Password'});
 };
 exports.doChangePassword = function(req,res){
-    usermail = req.body.usermail;
+    usermail = email;
     oldPassword = req.body.oldPassword;
     newPassword = req.body.newPassword;
 
@@ -105,12 +105,11 @@ exports.doChangePassword = function(req,res){
     if(recordsets[0].result == 0){
         res.render('mainpage',{Name:usermail});
         console.log("changed");
-      res.send("changed");
     }
     else
     {
       console.log("failed");
-      res.send("failed");
+      res.render('infor', {message:'You have to login before you change the password!'})
     }
     });
 
