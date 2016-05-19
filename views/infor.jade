@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	br
+	div.row
+		div.center-block
+			div.jumbotron
+				h3 #{message}
+				a(href = "/")
+					button.btn.btn-primary#back Back to Home
+
+//		p.alert You don't have the authorization to view this page

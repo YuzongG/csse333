@@ -20,6 +20,7 @@ exports.route = function(app){
 	app.get('/contact',contact);
 	app.get('/mainpage/getRestaurant', getRest);
 	app.get('/mainpage/getEntertain',getEntertain);
+	app.get('/mainpage/review',makeReview);
 };
 
 searchRest = function(req,res){
@@ -61,12 +62,19 @@ regback = function(req,res){
 logout = function(req,res){
 	return mainpage.logout(req,res);
 };
+
 contact = function(req,res){
 	res.render('contact');
 };
+
 getRest = function(req,res){
 	return mainpage.getRest(req,res);
 };
+
 getEntertain = function(req,res){
 	return mainpage.getEntertain(req,res);
+};
+
+makeReview = function(req,res){
+	return mainpage.makeReview(req,res);
 };

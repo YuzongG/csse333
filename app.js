@@ -39,12 +39,12 @@ app.use(function(req, res, next) {
     console.log("here");
   }
   else if(!req.cookies["user"]){
-    res.send("Not authorized");
+    res.render('infor',{message:'Not authorized'});
   }
   else {
     data = jwt.verify(req.cookies["user"], 'a-secret')
     if (data["user"] == null){
-      res.send("Not authorized");
+      res.render('infor',{message:'Not authorized'});
     }
     else{
       next();

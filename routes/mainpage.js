@@ -101,7 +101,7 @@ exports.logout = function(req,res){
 		res.clearCookie("user").redirect('/');
 	}
 	else{
-		res.send("you already logged out");
+		res.render('infor',{message:'you are already logged out'});
 	}
 };
 
@@ -130,3 +130,16 @@ exports.getEntertain = function(req,res){
         console.log("It's not in database");
     });
 }
+
+exports.makeReview = function(req,res){
+	sql.connect(config).then(function() {
+		var request = new sql.Request();
+		request.query("EXEC Show_view fun_place",function(err,recordsets,returnvalue){
+			myList = recordsets;
+			res.render('hotel', {title: 'Entertainments', results:myList, columns:[{0:'Entertainment Type', 1:'Name', 2:'Start Time', 3:'Ending Time', 4:'Phone Number', 5:'Rating', 6:'Detail', 7:'Address'}]});
+		});
+	}).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+};

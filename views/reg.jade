@@ -13,9 +13,10 @@ block content
 				label.control-label(for = "password") Password
 				div.controls
 					input.input-xlarge#password(type = "password", name = "password",required='')
+			br
 			div.form-actions
 				button.btn.btn-primary#regbtn Register
-		a(href = "/")
-			button.btn.btn-primary#back Back
-
+		br
+		form
+			button.btn.btn-primary(onclick = 'history.go(-1);return true;')#back Back
 //		p.alert You don't have the authorization to view this page
