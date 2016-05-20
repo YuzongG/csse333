@@ -47,7 +47,7 @@ app.use(function(req, res, next) {
   else {
     data = jwt.verify(req.cookies["user"], 'a-secret')
     if (data["user"] == null){
-      res.render('infor',{message:'Not authorized'});
+      res.render('infor',{message:'Not authorized, Please Login'});
     }
     else{
       next();
