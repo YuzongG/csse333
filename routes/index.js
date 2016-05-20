@@ -1,6 +1,6 @@
 var express = require('express');
 var crypto = require('crypto');
-
+var jwt = require('jsonwebtoken');
 /* GET home page. */
 users = require('./users');
 regi = require('./reg');
@@ -72,7 +72,12 @@ doChangePassword = function(req,res){
 	return users.doChangePassword(req,res);
 };
 contact = function(req,res){
-	res.render('contact');
+  if(!req.cookies["email"]){
+  	res.render('contact');
+  }
+  else{
+    res.render('contact', {Name:jwt.decode(req.cookies["email"]).user});
+  }
 };
 
 getRest = function(req,res){

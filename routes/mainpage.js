@@ -60,7 +60,12 @@ exports.review = function(req, res){
 
 
 exports.makeReview = function (req, res) {
-    usermail = req.body.usermail;
+      if(!req.cookies["email"]){   
+        username = null;
+      }
+      else{
+        usermail = jwt.decode(req.cookies["email"]).user;
+      }
     place = req.body.place;
     content = req.body.content;
     rating = req.body.rating;
@@ -83,7 +88,6 @@ exports.makeReview = function (req, res) {
     //determine if login successfully
     if(recordsets[0].result == 0){
       res.render('mainpage',{Name:usermail});
-      console.log("changed");
     }
     else if(recordsets[0].result == 1){
       console.log("place name invalid");
