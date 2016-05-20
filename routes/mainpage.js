@@ -101,7 +101,7 @@ exports.doSearch = function (req, res) {
       request.query("EXEC SEARCH '"+search+"'", function(err,recordsets,returnvalue){
         console.log(recordsets);
         myList2=recordsets;
-        res.render('hotel',{title:'Search Result for '+search+"'",results:myList2, columns:[{0:'Food', 1:'Restaurant', 2:'Phone Number', 4: 'Rating', 5: 'Serving Type'}]});
+        res.render('hotel',{title:'Search Result for '+search+"'",results:myList2, columns:[{0:'Food/Drink', 1:'Restaurant', 2:'Phone Number', 4: 'Rating', 5: 'Serving Type'}]});
       });
     }).catch(function(err){
       console.log("It's not in database");
