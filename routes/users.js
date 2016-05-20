@@ -74,14 +74,6 @@ exports.dologin = function(req,res){
     }
     });
 
-
-    // ES6 Tagged template literals (experimental)
-
-    //sql.query`select * from mytable where id = ${value}`.then(function(recordset) {
-    //    console.dir(recordset);
-    //}).catch(function(err) {
-        // ... query error checks
-    //});
     }).catch(function(err) {
     // ... connect error checks
         console.log("It's not in database");
@@ -101,39 +93,23 @@ exports.doChangePassword = function(req,res){
     newPassword = req.body.newPassword;
 
     sql.connect(config).then(function() {
-    // Query
-    console.log("You are in the database");
-    console.log(usermail);
-    console.log(newPassword);
-    console.log(oldPassword);
-   // Query - returns 0 if user is in the table 1 if not
-    var request = new sql.Request();
-    request.query("EXEC Change_Password '"+usermail+"','"+oldPassword+"','"+newPassword+"'", function(err,recordsets,returnvalue) {
+      // Query
+      console.log("You are in the database");
+      // Query - returns 0 if user is in the table 1 if not
+      var request = new sql.Request();
+      request.query("EXEC Change_Password '"+usermail+"','"+oldPassword+"','"+newPassword+"'", function(err,recordsets,returnvalue) {
+        //determine if login successfully
+        if(recordsets[0].result == 0){
+          res.render('mainpage',{Name:usermail});
+          console.log("changed");
+        }
+        else
+        {
+          console.log("failed");
+          res.render('infor', {message:'You have to login before you change the password!'})
+        }
+      });
 
-    console.log("pwd:");
-
-    console.log(recordsets[0]);
-
-    //determine if login successfully
-    if(recordsets[0].result == 0){
-        res.render('mainpage',{Name:usermail});
-        console.log("changed");
-    }
-    else
-    {
-      console.log("failed");
-      res.render('infor', {message:'You have to login before you change the password!'})
-    }
-    });
-
-
-    // ES6 Tagged template literals (experimental)
-
-    //sql.query`select * from mytable where id = ${value}`.then(function(recordset) {
-    //    console.dir(recordset);
-    //}).catch(function(err) {
-        // ... query error checks
-    //});
     }).catch(function(err) {
     // ... connect error checks
         console.log("It's not in database");

@@ -72,14 +72,6 @@ exports.doreg = function (req, res) {
     }
     });
 
-
-    // ES6 Tagged template literals (experimental)
-
-    //sql.query`select * from mytable where id = ${value}`.then(function(recordset) {
-    //    console.dir(recordset);
-    //}).catch(function(err) {
-        // ... query error checks
-    //});
     }).catch(function(err) {
     // ... connect error checks
         console.log("It's not in database");

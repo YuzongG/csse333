@@ -24,36 +24,91 @@ exports.show = function(req, res){
 };
 
 
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+exports.getHotel = function(req, res){
+	sql.connect(config).then(function() {
+		var request = new sql.Request();
+		request.query("EXEC Show_View Hotels",function(err,recordsets,returnvalue){
+			console.log(recordsets);
+			myList3 = recordsets;
+			res.render('hotel', {title: 'Hotels', results:myList3, columns:[{0:'Name', 1:'Phone Number', 2:'Detail', 3:'Rating' }]});
+		});
+	}).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+};
+exports.getAttraction = function(req, res){
+  sql.connect(config).then(function() {
+    var request = new sql.Request();
+    request.query("EXEC Show_View Attractions",function(err,recordsets,returnvalue){
+      console.log(recordsets);
+      myList3 = recordsets;
+      res.render('hotel', {title: 'Attractions', results:myList3, columns:[{0:'Name', 1:'Phone Number', 2:'Detail', 3:'Rating',4:'Address' }]});
+    });
+  }).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+};
 
-// app.post('/checkHotel',function(){
-// 	console.log("131333133131")
 
-// 	sql.connect(config).then(function() {
-// 		console.log("131333133131")
-// 		var request = new sql.Request();
-// 		request.query("EXEC Show_hotel",function(err,recordsets,returnvalue){
-// 			console.log(recordsets);
-// 		});
-// 	}).catch(function(err) {
-//     // ... connect error checks
-//         console.log("It's not in database");
-//     });
-// });
-// exports.searchRest = function(req, res){
+exports.getRest = function(req,res){
+	sql.connect(config).then(function() {
+		var request = new sql.Request();
+		request.query("EXEC Show_view RestaurantView",function(err,recordsets,returnvalue){
+			myList = recordsets;
+			res.render('hotel', {title: 'Restaurants', results:myList, columns:[{0:'Restaurant Name', 1:'Phone Number', 2:'Rating (5.0)', 3:'Details', 4:'Address',5:'Served by'}]});
+		});
+	}).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+}
 
-// 	sql.connect(config).then(function(){
-// 		var request = new sql.Request();
-// 		request.query("EXEC SEARCH IHD", function(err,recordsets,returnvalue){
-// 			console.log(recordsets);
-// 			myList2=recordsets;
-// 			res.render('hotel',{title:'Hotels',results:myList2});
-// 		});
-// 	}).catch(function(err){
-// 		console.log("It's not in database");
-// 	});
-// };
+exports.getEntertain = function(req,res){
+	sql.connect(config).then(function() {
+		var request = new sql.Request();
+		request.query("EXEC Show_view fun_place",function(err,recordsets,returnvalue){
+			myList = recordsets;
+			res.render('hotel', {title: 'Entertainments', results:myList, columns:[{0:'Entertainment Type', 1:'Name', 2:'Phone Number', 3:'Detail',4:'Rating', 5:'Address'}]});
+		});
+	}).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+}
+
+exports.searchRest = function(req, res){
+  res.render('hotel.jade', {title: 'Search'});
+};
+
+
+exports.doSearch = function (req, res) {
+
+  search = req.body.search
+  if(search==""){//handles null input value
+    search="''";
+  }
+
+    sql.connect(config).then(function() {
+      // Query
+      console.log("You are in the database");
+
+     // Query - returns 0 if user is in the table 1 if not
+      var request = new sql.Request();
+      sql.connect(config).then(function(){
+      var request = new sql.Request();
+      request.query("EXEC SEARCH "+search+"", function(err,recordsets,returnvalue){
+        console.log(recordsets);
+        myList2=recordsets;
+        res.render('hotel',{title:'Search Result for '+search,results:myList2, columns:[{0:'Food', 1:'Restaurant', 2:'Phone Number', 4: 'Rating', 5: 'Serving Type'}]});
+      });
+    }).catch(function(err){
+      console.log("It's not in database");
+    });
+  });
+};
+
 exports.review = function(req, res){
     
 
@@ -209,97 +264,12 @@ exports.makeReview = function (req, res) {
     });
 };
 
-
-exports.getHotel = function(req, res){
-	sql.connect(config).then(function() {
-		var request = new sql.Request();
-		request.query("EXEC Show_View Hotels",function(err,recordsets,returnvalue){
-			console.log(recordsets);
-			myList3 = recordsets;
-			res.render('hotel', {title: 'Hotels', results:myList3, columns:[{0:'Name', 1:'Phone Number', 2:'Detail', 3:'Rating' }]});
-		});
-	}).catch(function(err) {
-    // ... connect error checks
-        console.log("It's not in database");
-    });
-};
-exports.getAttraction = function(req, res){
-  sql.connect(config).then(function() {
-    var request = new sql.Request();
-    request.query("EXEC Show_View Attractions",function(err,recordsets,returnvalue){
-      console.log(recordsets);
-      myList3 = recordsets;
-      res.render('hotel', {title: 'Attractions', results:myList3, columns:[{0:'Name', 1:'Phone Number', 2:'Detail', 3:'Rating',4:'Address' }]});
-    });
-  }).catch(function(err) {
-    // ... connect error checks
-        console.log("It's not in database");
-    });
-};
-exports.searchRest = function(req, res){
-	res.render('hotel.jade', {title: 'Search'});
-};
-
-
-exports.doSearch = function (req, res) {
-
-	search = req.body.search
-	if(search==""){//handles null input value
-		search="''";
-	}
-
-  	sql.connect(config).then(function() {
-	    // Query
-	    console.log("You are in the database");
-
-	   // Query - returns 0 if user is in the table 1 if not
-	    var request = new sql.Request();
-	    sql.connect(config).then(function(){
-			var request = new sql.Request();
-			request.query("EXEC SEARCH "+search+"", function(err,recordsets,returnvalue){
-				console.log(recordsets);
-				myList2=recordsets;
-				res.render('hotel',{title:'Search Result for '+search,results:myList2, columns:[{0:'Food', 1:'Restaurant', 2:'Phone Number', 4: 'Rating', 5: 'Serving Type'}]});
-			});
-		}).catch(function(err){
-			console.log("It's not in database");
-		});
-	});
-};
-
-
-
 exports.logout = function(req,res){
-	if(req.cookies["user"]){
+  if(req.cookies["user"]){
         res.clearCookie("email");
-		res.clearCookie("user").redirect('/');
-	}
-	else{
-		res.render('infor',{message:'you are already logged out'});
-	}
+    res.clearCookie("user").redirect('/');
+  }
+  else{
+    res.render('infor',{message:'you are already logged out'});
+  }
 };
-exports.getRest = function(req,res){
-	sql.connect(config).then(function() {
-		var request = new sql.Request();
-		request.query("EXEC Show_view RestaurantView",function(err,recordsets,returnvalue){
-			myList = recordsets;
-			res.render('hotel', {title: 'Restaurants', results:myList, columns:[{0:'Restaurant Name', 1:'Phone Number', 2:'Rating (5.0)', 3:'Details', 4:'Address',5:'Served by'}]});
-		});
-	}).catch(function(err) {
-    // ... connect error checks
-        console.log("It's not in database");
-    });
-}
-
-exports.getEntertain = function(req,res){
-	sql.connect(config).then(function() {
-		var request = new sql.Request();
-		request.query("EXEC Show_view fun_place",function(err,recordsets,returnvalue){
-			myList = recordsets;
-			res.render('hotel', {title: 'Entertainments', results:myList, columns:[{0:'Entertainment Type', 1:'Name', 2:'Phone Number', 3:'Detail',4:'Rating', 5:'Address'}]});
-		});
-	}).catch(function(err) {
-    // ... connect error checks
-        console.log("It's not in database");
-    });
-}
