@@ -32,7 +32,7 @@ exports.doreg = function (req, res) {
 
    // Query - returns 0 if user is in the table 1 if not
     var request = new sql.Request();
-    request.query("EXEC Check_User_Email '"+usermail+"'", 
+    request.query("EXEC ADD_USER '"+usermail+"', '"+password+"'", 
         function(err, recordsets, returnValue) {
 
     // ... error checks 
@@ -45,19 +45,17 @@ exports.doreg = function (req, res) {
     //determine if login successfully
     if (recordsets[0].result == 0 ){
       console.log("Adding User to Database");
-        var userinfo = {
-        //  stick in data from the database HERE!!!!!!!!
-            username: usermail,
-            password: password,
-            //Lname: "David"
-        };
-        request.query("EXEC ADD_USER '"+usermail+"', '"+password+"'");
         //res.sendFile(__dirname + "/home/loggedIn.html");
-        res.send("successfully");
+        res.send("successfully added");
     }
     else if(recordsets[0].result == 1){
         console.log("User Already Exist");
         res.send("User Already Exist");
+
+    }
+    else if(recordsets[0].result == 2){
+        console.log("password is not appropriate");
+        res.send("Password is not in an appropriate format.");
 
     }
     else
