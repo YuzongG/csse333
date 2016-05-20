@@ -35,8 +35,6 @@ app.use(function(req, res, next) {
   if(req.path == '/' || req.path =='/reg' || req.path =='/login' 
     ||req.path == '/contact'||req.path=='/mainpage/logout'){
     next();
-    console.log(req.cookies);
-    console.log("here");
   }
   else if(!req.cookies["user"]){
     if(req.path == '/changePassword'){
@@ -85,8 +83,15 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 app.get('/', function (req, res) {
-  res.render('index');
+  console.log(req.cookies["email"]);
+  if(!req.cookies["email"]){
+    res.render('index');
+  }
+  else{
+    res.render('index', {Name:jwt.decode(req.cookies["email"]).user});
+  }
 });
 
 require('./routes').route(app);

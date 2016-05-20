@@ -2,6 +2,7 @@ var request;
 var sql = require('mssql');
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 /* GET users listing. */
 
 var config = {
@@ -14,7 +15,12 @@ var config = {
 
 
 exports.reg = function (req, res) {
-	res.render('reg.jade', {title: 'Register'});
+  if(!req.cookies["email"]){
+    res.render('reg.jade', {title: 'Register'});
+  }
+  else{
+    res.render('reg.jade', {title:'Register',Name:jwt.decode(req.cookies["email"]).user});
+  }
 };
 
 exports.back = function (req, res) {

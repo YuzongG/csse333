@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var crypto = require('crypto');
 var express = require('express');
 var path = require('path');
-var app = express()
+var jwt = require('jsonwebtoken');
 /* GET users listing. */
 
 var config = {
@@ -50,7 +50,12 @@ exports.show = function(req, res){
 // 	});
 // };
 exports.review = function(req, res){
-	res.render('review.jade', {title: 'Review'});
+  if(!req.cookies["email"]){
+    res.render('review.jade', {title: 'Review'});
+  }
+  else{
+    res.render('review.jade', {title:'Review',Name:jwt.decode(req.cookies["email"]).user});
+  }
 };
 
 
@@ -158,6 +163,7 @@ exports.doSearch = function (req, res) {
 
 exports.logout = function(req,res){
 	if(req.cookies["user"]){
+        res.clearCookie("email");
 		res.clearCookie("user").redirect('/');
 	}
 	else{

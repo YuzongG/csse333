@@ -19,7 +19,13 @@ var config = {
 
 
 exports.login = function(req,res){
-	res.render('login.jade',{title: 'User Login'});
+  if(!req.cookies["email"]){
+    res.render('login.jade',{title: 'User Login'});
+  }
+  else{
+    res.render('login.jade', {title:'User Login',Name:jwt.decode(req.cookies["email"]).user});
+  }
+
 };
 
 exports.dologin = function(req,res){
@@ -46,9 +52,11 @@ exports.dologin = function(req,res){
     //determine if login successfully
     if (recordsets[0].result == 0 ) {
         console.log("login successfully");
-        token = jwt.sign({user: usermail}, 'a-secret')
+        token = jwt.sign({user: usermail}, 'a-secret');
+        token2 = jwt.sign({user:usermail},'usermail');
         console.log("token: ");             
         console.log(token);
+        res.cookie('email',token2);
         res.cookie('user', token).render('mainpage',{Name:usermail});
 
 
@@ -80,7 +88,12 @@ exports.dologin = function(req,res){
     });
 };
 exports.changePassword = function(req,res){
+  if(!req.cookies["email"]){
     res.render('changePassword.jade',{title: 'Change Password'});
+  }
+  else{
+    res.render('changePassword.jade', {title:'Change Password',Name:jwt.decode(req.cookies["email"]).user});
+  }
 };
 exports.doChangePassword = function(req,res){
     usermail = email;
@@ -126,3 +139,4 @@ exports.doChangePassword = function(req,res){
         console.log("It's not in database");
     });
 };
+
