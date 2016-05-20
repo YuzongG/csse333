@@ -52,22 +52,22 @@ exports.doreg = function (req, res) {
     if (recordsets[0].result == 0 ){
       console.log("Adding User to Database");
         //res.sendFile(__dirname + "/home/loggedIn.html");
-        res.send("successfully added");
+        res.render('infor', {message:"Congratulation! Now You Can Travel With Us!"});
     }
     else if(recordsets[0].result == 1){
         console.log("User Already Exist");
-        res.send("User Already Exist");
+        res.render('infor', {message:"User Email already exists."});
 
     }
     else if(recordsets[0].result == 2){
         console.log("password is not appropriate");
-        res.send("Password is not in an appropriate format.");
+        res.render('infor', {message:"Password is not in appropriate format"});
 
     }
     else
     {
       console.log("Invalid e-mail address format");
-      res.send("Invalid e-mail address format");
+      res.render('infor', {message:"Invalid Password format."});
 
     }
     });

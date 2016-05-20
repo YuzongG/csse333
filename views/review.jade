@@ -13,18 +13,7 @@ block content
       tr
     - }
   br
-  form.form-forizontal(method = "post2", action="/mainpage/review2")
-  br
-  fieldset
-    legend Delete Your Review
-    div.control-group
-      label.control-label(for='inputDelete') Place Name
-      div.controls
-        input#inputPlace.input-xlarge(type='text', name = "deletePlace", placeholder='Place Name', required='')
-      div.form-actions
-        button.btn.btn-primary#deletebtn Delete
-  br
-  form.form-forizontal(method = "post")
+  form.form-forizontal(method = "post", action="/mainpage/review")
     br
     fieldset
       legend Make a new Review
@@ -40,8 +29,35 @@ block content
         label.control-label(for='inputRating') Rating out of 5.0
         div.controls
           input#inputRating.input-xlarge(type='number', step='0.1', name = "rating", placeholder='Out of 5.0', required='')
-
       div.form-actions
         button.btn.btn-primary#reviewbtn Submit
+  form.form-forizontal(method = "post", action="/mainpage/deletereview")
+    br
+    fieldset
+      legend Delete Your Review
+      div.control-group
+        label.control-label(for='inputDelete') Place Name
+        div.controls
+          input#inputPlace.input-xlarge(type='text', name = "deletePlace", placeholder='Place Name', required='')
+        div.form-actions
+          button.btn.btn-primary#deletebtn Delete
+  br
+  form.form-forizontal(method = "post", action="/mainpage/editreview")
+    br
+    fieldset
+      legend Change Your Review
+      div.control-group
+        label.control-label(for='inputEdit') Place Name
+        div.controls
+          input#inputPlace.input-xlarge(type='text', name = "editPlace", placeholder='Place Name', required='')
+        label.control-label(for='inputEdit') What did you want to say?
+        div.controls
+          input#inputPlace.input-xlarge(type='text', name = "editContent", placeholder='Content Here', required='')
+        label.control-label(for='inputEdit') Rating out of 5.0
+        div.controls
+          input#inputPlace.input-xlarge(type='number', step='0.1', name = "editRating", placeholder='Out of 5.0', required='')
+        div.form-actions
+          button.btn.btn-primary#deletebtn Edit
+  br
   form
     button.btn-primary.btn-primary(onclick = 'history.go(-1);return true;')#back Back

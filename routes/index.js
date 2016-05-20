@@ -20,9 +20,11 @@ exports.route = function(app){
 	app.get('/contact',contact);
 	app.get('/mainpage/getRestaurant', getRest);
 	app.get('/mainpage/getEntertain',getEntertain);
+	app.get('/mainpage/getAttraction',getAttraction);
 	app.get('/mainpage/review',review);
 	app.post('/mainpage/review',makeReview);
-	app.post('/mainpage/review',deleteReview);
+	app.post('/mainpage/deletereview',deleteReview);
+	app.post('/mainpage/editreview',editReview);
 	app.get('/changePassword',changePassword);
 	app.post('/changePassword',doChangePassword);
 };
@@ -88,6 +90,9 @@ getRest = function(req,res){
 getEntertain = function(req,res){
 	return mainpage.getEntertain(req,res);
 };
+getAttraction = function(req,res){
+	return mainpage.getAttraction(req,res);
+};
 review = function(req,res){
 	return mainpage.review(req,res);
 };
@@ -96,4 +101,7 @@ makeReview = function(req,res){
 };
 deleteReview = function(req,res){
 	return mainpage.deleteReview(req,res);
+};
+editReview = function(req,res){
+	return mainpage.editReview(req,res);
 };
