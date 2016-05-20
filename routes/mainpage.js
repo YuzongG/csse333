@@ -50,35 +50,47 @@ exports.show = function(req, res){
 // 	});
 // };
 exports.review = function(req, res){
+    
+
   if(!req.cookies["email"]){
     res.render('review.jade', {title: 'Review'});
   }
   else{
-    res.render('review.jade', {title:'Review',Name:jwt.decode(req.cookies["email"]).user});
+    usermail = jwt.decode(req.cookies["email"]).user;
+
+    sql.connect(config).then(function() {
+    // Query
+      var request = new sql.Request();
+      request.query("EXEC ViewReview '"+usermail+"'",function(err,recordsets,returnvalue){
+        console.log(recordsets);
+     
+        res.render('review.jade', {title:'Review',results:recordsets, columns:[{0:'Name', 1:'Content', 2:'Rating'}],Name:jwt.decode(req.cookies["email"]).user});
+
+       });
+    });
+
   }
 };
 
 
 exports.makeReview = function (req, res) {
-      if(!req.cookies["email"]){   
-        username = null;
-      }
-      else{
-        usermail = jwt.decode(req.cookies["email"]).user;
-      }
-    place = req.body.place;
-    content = req.body.content;
-    rating = req.body.rating;
+  if(!req.cookies["email"]){   
+    username = null;
+  }
+  else{
+    usermail = jwt.decode(req.cookies["email"]).user;
+  }
+  place = req.body.place;
+  content = req.body.content;
+  rating = req.body.rating;
+
 
     sql.connect(config).then(function() {
     // Query
-    console.log("You are in the database");
-    console.log(usermail);
-    console.log(place);
-    console.log(content);
-    console.log(rating);
+   
    // Query - returns 0 if user is in the table 1 if not
     var request = new sql.Request();
+    
     request.query("EXEC INSERT_Review '"+usermail+"','"+place+"','"+content+"','"+rating+"'", function(err,recordsets,returnvalue) {
 
     console.log("review:");
@@ -90,8 +102,8 @@ exports.makeReview = function (req, res) {
       res.render('mainpage',{Name:usermail});
     }
     else if(recordsets[0].result == 1){
-      console.log("place name invalid");
-      res.send("place name invalid");
+      console.log("Place name is invalid");
+      res.send("Place name is invalid");
     }
     else if(recordsets[0].result == 2){
       console.log("Invalid Usermail");
@@ -99,8 +111,8 @@ exports.makeReview = function (req, res) {
     }
     else 
     {
-      console.log("Rating out of Range");
-      res.send("Rating out of Range");
+      console.log("Rating is out of Range");
+      res.send("Rating is out of Range (0.0 to 5.0)");
     }
     });
 
@@ -124,8 +136,8 @@ exports.getHotel = function(req, res){
 		var request = new sql.Request();
 		request.query("EXEC Show_hotel",function(err,recordsets,returnvalue){
 			console.log(recordsets);
-			myList = recordsets;
-			res.render('hotel', {title: 'Hotels', results:myList, columns:[{0:'Name', 1:'Phone Number', 2:'Introduction', 3:'Rating' }]});
+			myList3 = recordsets;
+			res.render('hotel', {title: 'Hotels', results:myList3, columns:[{0:'Name', 1:'Phone Number', 2:'Introduction', 3:'Rating' }]});
 		});
 	}).catch(function(err) {
     // ... connect error checks

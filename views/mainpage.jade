@@ -7,7 +7,7 @@ block content
 	h1 Korean Guide
 	form.form-forizontal(method = "post",action="/mainpage/searchRest")
 		div.control-group
-			label.control-label(for = "search") Hungury? Search some food!
+			label.control-label(for = "search") Starving? Search for food names here!
 			div.controls
 				input.input-xlarge#search(type = "text", name = "search")
 			div.form-actions
@@ -19,7 +19,7 @@ block content
 	.row.featurette
 		.col-md-7
 			h2.featurette-heading
-				| Check Hotels 
+				| Check Out Hotels 
 			p.lead
 				| Find a comfortable hotel to begin your journey in Korea.
 			form.form-forizontal(method = "post",action = "/getHotel")
@@ -31,9 +31,9 @@ block content
 	.row.featurette
 		.col-md-7.col-md-push-5
 			h2.featurette-heading
-				| Oh yeah, Korean food. 
+				| Oh Yeah, Korean Food. 
 			p.lead
-				| Roasting beef, pork, chicken, kimchi. 
+				| Grills, Barbeque, Kimchi. 
 			a(href='/mainpage/getRestaurant').btn.btn-primary#search  check
 		.col-md-5.col-md-pull-7
 			img.featurette-image.img-responsive.center-block(src='/bootstrap/pics/bbq.jpg', alt='Generic placeholder image')
@@ -41,9 +41,9 @@ block content
 	.row.featurette
 		.col-md-7
 			h2.featurette-heading
-				| And lastly, Entertain. 
+				| Have Some Fun Here!
 			p.lead
-				| Night clubs, pubs, alcohol
+				| Night Clubs, Billiards, Bowling
 			a(href='/mainpage/getEntertain').btn.btn-primary#search  check
 		.col-md-5
 			img.featurette-image.img-responsive.center-block(src='/bootstrap/pics/club.jpg', alt='Generic placeholder image')

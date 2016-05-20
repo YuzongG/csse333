@@ -1,5 +1,29 @@
 extends layout
 block content
+  table.table.table-striped
+    thead
+    - for (var i = 0; i < columns.length; ++i) {  
+      each val in columns[i]
+        th=val
+    - }
+    tbody
+    - for (var i = 0; i < results.length; ++i) {
+      each val in results[i]
+        td=val
+      tr
+    - }
+  br
+  form.form-forizontal(method = "post",action="/mainpage/review)
+  br
+  fieldset
+    legend Delete Your Review
+    div.control-group
+      label.control-label(for='inputPlace') Place Name
+      div.controls
+        input#inputPlace.input-xlarge(type='text', name = "delete", placeholder='Place Name', required='')
+      div.form-actions
+        button.btn.btn-primary#deletebtn Delete
+  br
   form.form-forizontal(method = "post")
     br
     fieldset
