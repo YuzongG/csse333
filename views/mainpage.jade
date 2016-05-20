@@ -15,18 +15,36 @@ block content
 	br
 	br
 	br
-	div.row(background-color:"#E4B564")
-		div.span4
-			div.well.searchWay
-				h3 Hotels
-				form.form-forizontal(method = "post",action = "/getHotel")
-					a(href='/mainpage/getHotel').btn.btn-primary#checkHotel check
-		div.span4
-			div.well.searchWay1
-				h3 Restaurants
-				a(href='/mainpage/getRestaurant').btn.btn-primary#search  check
-		div.span4
-			div.well.searchWay2
-				h3 Entertainments
-				a(href='/mainpage/getEntertain').btn.btn-primary#search  check
+	hr.featurette-divider
+	.row.featurette
+		.col-md-7
+			h2.featurette-heading
+				| Check Hotels 
+			p.lead
+				| Find a comfortable hotel to begin your journey in Korea.
+			form.form-forizontal(method = "post",action = "/getHotel")
+				a(href='/mainpage/getHotel').btn.btn-primary#checkHotel check
+		.col-md-5
+			img.featurette-image.img-responsive.center-block(src='/bootstrap/pics/hotel2.jpg', alt='Generic placeholder image')
 
+	hr.featurette-divider
+	.row.featurette
+		.col-md-7.col-md-push-5
+			h2.featurette-heading
+				| Oh yeah, Korean food. 
+			p.lead
+				| Roasting beef, pork, chicken, kimchi. 
+			a(href='/mainpage/getRestaurant').btn.btn-primary#search  check
+		.col-md-5.col-md-pull-7
+			img.featurette-image.img-responsive.center-block(src='/bootstrap/pics/bbq.jpg', alt='Generic placeholder image')
+	hr.featurette-divider
+	.row.featurette
+		.col-md-7
+			h2.featurette-heading
+				| And lastly, Entertain. 
+			p.lead
+				| Night clubs, pubs, alcohol
+			a(href='/mainpage/getEntertain').btn.btn-primary#search  check
+		.col-md-5
+			img.featurette-image.img-responsive.center-block(src='/bootstrap/pics/club.jpg', alt='Generic placeholder image')
+	hr.featurette-divider
