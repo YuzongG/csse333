@@ -1,18 +1,18 @@
 extends layout
 block content
-  form.form-forizontal(method = "post")
-    br
-    fieldset
-      legend User Login
-      div.control-group
-        label.control-label(for='inputEmail') Email address
-        div.controls
-          input#inputEmail.input-xlarge(type='email', name = "usermail", placeholder='Email address', required='', autofocus='')
-      div.control-group
-        label.control-label(for='inputPassword') Password
-        div.controls
-          input#inputPassword.input-xlarge(type='password', name = "password", placeholder='Password', required='')
-      div.form-actions
-        button.btn.btn-primary#loginbtn Sign in
-  form
-    button.btn-primary.btn-primary(onclick = 'history.go(-1);return true;')#back Back
+  contact
+    form(method = "post",style='display: inline')
+      fieldset
+        .containter
+          .row
+            .col-sm-6.col-md-4.col-md-offset-4
+              h1.text-center.login-title Sign in to continue
+              .account-wall(style='margin:0; padding:0; display:inline')
+                img.profile-img(src='/bootstrap/pics/icon.png', alt='')
+                form.form-signin(style='margin:0; padding:0; display:inline')
+                  input.form-control(type='text', name='usermail', placeholder='Email address', required='', autofocus='')
+                  input.form-control(type='password', name='password', placeholder='Password', required='')
+                  div.for-actions
+                    button.btn.btn-lg.btn-primary.btn-block(type='submit')
+                      | Sign in 
+              a.text-center.new-account(href='/reg') Create an account
