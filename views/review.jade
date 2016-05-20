@@ -13,21 +13,21 @@ block content
       tr
     - }
   br
-  form.form-forizontal(method = "post",action="/mainpage/review)
+  form.form-forizontal(method = "post2", action="/mainpage/review2")
   br
   fieldset
     legend Delete Your Review
     div.control-group
-      label.control-label(for='inputPlace') Place Name
+      label.control-label(for='inputDelete') Place Name
       div.controls
-        input#inputPlace.input-xlarge(type='text', name = "delete", placeholder='Place Name', required='')
+        input#inputPlace.input-xlarge(type='text', name = "deletePlace", placeholder='Place Name', required='')
       div.form-actions
         button.btn.btn-primary#deletebtn Delete
   br
   form.form-forizontal(method = "post")
     br
     fieldset
-      legend Review
+      legend Make a new Review
       div.control-group
         label.control-label(for='inputPlace') Place Name
         div.controls

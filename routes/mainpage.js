@@ -71,7 +71,41 @@ exports.review = function(req, res){
 
   }
 };
+exports.deleteReview = function (req, res) {
+  if(!req.cookies["email"]){   
+    username = null;
+  }
+  else{
+    usermail = jwt.decode(req.cookies["email"]).user;
+  }
+  deletePlace = req.body.deletePlace;
 
+
+    sql.connect(config).then(function() {
+    // Query
+   
+   // Query - returns 0 if user is in the table 1 if not
+    var request = new sql.Request();
+    
+    request.query("EXEC DELETE_REVIEW '"+usermail+"','"+deletePlace+"'", function(err,recordsets,returnvalue) {
+    console.log(recordsets[0]);
+
+    //determine if login successfully
+    if(recordsets[0].result == 0){
+      res.render('mainpage/review',{Name:usermail});
+    }
+    else 
+    {
+      console.log("Review does not exist");
+      res.send("Review does not exist");
+    }
+    });
+
+    }).catch(function(err) {
+    // ... connect error checks
+        console.log("It's not in database");
+    });
+};
 
 exports.makeReview = function (req, res) {
   if(!req.cookies["email"]){   
@@ -88,7 +122,6 @@ exports.makeReview = function (req, res) {
     sql.connect(config).then(function() {
     // Query
    
-   // Query - returns 0 if user is in the table 1 if not
     var request = new sql.Request();
     
     request.query("EXEC INSERT_Review '"+usermail+"','"+place+"','"+content+"','"+rating+"'", function(err,recordsets,returnvalue) {
@@ -99,7 +132,18 @@ exports.makeReview = function (req, res) {
 
     //determine if login successfully
     if(recordsets[0].result == 0){
-      res.render('mainpage',{Name:usermail});
+      usermail = jwt.decode(req.cookies["email"]).user;
+
+      sql.connect(config).then(function() {
+      // Query
+        var request = new sql.Request();
+        request.query("EXEC ViewReview '"+usermail+"'",function(err,recordsets,returnvalue){
+          console.log(recordsets);
+       
+          res.render('review.jade', {title:'Review',results:recordsets, columns:[{0:'Name', 1:'Content', 2:'Rating'}],Name:jwt.decode(req.cookies["email"]).user});
+
+         });
+      });
     }
     else if(recordsets[0].result == 1){
       console.log("Place name is invalid");
@@ -115,15 +159,6 @@ exports.makeReview = function (req, res) {
       res.send("Rating is out of Range (0.0 to 5.0)");
     }
     });
-
-
-    // ES6 Tagged template literals (experimental)
-
-    //sql.query`select * from mytable where id = ${value}`.then(function(recordset) {
-    //    console.dir(recordset);
-    //}).catch(function(err) {
-        // ... query error checks
-    //});
     }).catch(function(err) {
     // ... connect error checks
         console.log("It's not in database");

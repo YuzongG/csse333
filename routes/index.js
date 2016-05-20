@@ -22,6 +22,7 @@ exports.route = function(app){
 	app.get('/mainpage/getEntertain',getEntertain);
 	app.get('/mainpage/review',review);
 	app.post('/mainpage/review',makeReview);
+	app.post('/mainpage/review',deleteReview);
 	app.get('/changePassword',changePassword);
 	app.post('/changePassword',doChangePassword);
 };
@@ -92,4 +93,7 @@ review = function(req,res){
 };
 makeReview = function(req,res){
 	return mainpage.makeReview(req,res);
+};
+deleteReview = function(req,res){
+	return mainpage.deleteReview(req,res);
 };
