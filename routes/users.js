@@ -58,13 +58,17 @@ exports.dologin = function(req,res){
         console.log(token);
         res.cookie('email',token2);
         res.cookie('user', token).render('mainpage',{Name:usermail});
-
-
-        //res.sendFile(__dirname + "/home/loggedIn.html", usermail);
-        
     }
-    else if(recordsets[0].result == 1){
-    	console.log("Invalid Password");
+    else if(recordsets[0].result == 2){
+      console.log("Invalid e-mail address format");
+      res.render('infor',{message:'Invalid e-mail address format.'});
+    }
+    else if(recordsets[0].result == 3){
+      console.log("IInvalid Email Address");
+      res.render('infor',{message:'Invalid Email Address. Email does not exsit.'});
+    }
+    else if(recordsets[0].result == 4){
+      console.log("Invalid Password");
       res.render('infor',{message:'Invalid Password'});
     }
     else

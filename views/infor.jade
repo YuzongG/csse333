@@ -6,7 +6,7 @@ block content
 		div.center-block
 			div.jumbotron
 				h3 #{message}
-				a(href = "/")
-					button.btn.btn-primary#back Back to Home
+				form
+					button.btn.btn-primary(onclick = 'history.go(-1);return true;')#back Back
 
 //		p.alert You don't have the authorization to view this page

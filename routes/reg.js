@@ -60,15 +60,13 @@ exports.doreg = function (req, res) {
 
     }
     else if(recordsets[0].result == 2){
-        console.log("password is not appropriate");
-        res.render('infor', {message:"Password is not in appropriate format"});
-
-    }
-    else
-    {
       console.log("Invalid e-mail address format");
-      res.render('infor', {message:"Invalid Password format."});
-
+      res.render('infor', {message:"Invalid e-mail address format."});
+    }
+    else 
+    {
+      console.log("password is not appropriate");
+      res.render('infor', {message:"Password is not in appropriate format"});
     }
     });
 
