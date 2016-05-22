@@ -107,6 +107,14 @@ exports.doChangePassword = function(req,res){
           res.render('mainpage',{Name:usermail});
           console.log("changed");
         }
+        else if(recordsets[0].result == 1){
+          console.log("failed");
+          res.render('infor', {message:'Old password does not match your account'})
+        }
+        else if(recordsets[0].result == 2){
+          console.log("failed");
+          res.render('infor', {message:'Please include at least 1 alphabet and 1 number'})
+        }
         else
         {
           console.log("failed");
