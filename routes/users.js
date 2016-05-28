@@ -17,7 +17,13 @@ var config = {
     parseJSON: true
 };
 
-
+function checkHacking(str,res){
+  if(str.includes("'")||str.includes(";")||str.includes("/")) {
+    console.log("dont hack me");
+    res.render('infor', {message:"dont hack me"});
+  }
+  else return ;
+};
 exports.login = function(req,res){
   if(!req.cookies["email"]){
     res.render('login.jade',{title: 'User Login'});
@@ -33,7 +39,10 @@ exports.dologin = function(req,res){
   usermail = req.body.usermail;
   password = req.body.password;
   console.log(usermail);
-  email = usermail;
+  //check for injections
+  checkHacking(usermail,res);
+  checkHacking(password,res);
+  console.log("aa");
   sql.connect(config).then(function() {
     // Query
     console.log("You are in the database");

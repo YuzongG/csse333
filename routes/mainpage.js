@@ -13,7 +13,13 @@ var config = {
     database: 'MitchGaoJim',
     parseJSON: true
 };
-
+function checkHacking(str,res){
+  if(str.includes("'")||str.includes(";")||str.includes("/")) {
+    console.log("dont hack me");
+    res.render('infor', {message:"dont hack me"});
+  }
+  else return ;
+};
 exports.show = function(req, res){
   if(!req.cookies["email"]){
     res.render('mainpage.jade');
@@ -86,6 +92,7 @@ exports.searchRest = function(req, res){
 exports.doSearch = function (req, res) {
 
   search = req.body.search
+  checkHacking(search,res);
 
     sql.connect(config).then(function() {
       // Query
@@ -173,7 +180,10 @@ exports.editReview = function (req, res) {
   editPlace = req.body.editPlace;
   editContent = req.body.editContent;
   editRating = req.body.editRating;
-
+  checkHacking(editPlace,res);
+  checkHacking(editContent,res);
+  checkHacking(editRating,res);
+  
     sql.connect(config).then(function() {
     // Query
    
@@ -219,6 +229,9 @@ exports.makeReview = function (req, res) {
   place = req.body.place;
   content = req.body.content;
   rating = req.body.rating;
+  checkHacking(place,res);
+  checkHacking(content,res);
+  checkHacking(rating,res);
 
 
     sql.connect(config).then(function() {
