@@ -14,9 +14,9 @@ var config = {
 };
 
 function checkHacking(str,res){
-  if(str.includes("'")||str.includes(";")||str.includes("/")) {
-    console.log("dont hack me");
-    res.render('infor', {message:"dont hack me"});
+  if(str.includes("'")||str.includes(";")||str.includes("/")||str.includes("=")||str.includes("$")) {
+    console.log("Your input string contains illegal characters.");
+    res.render('infor', {message:"Your input string contains illegal characters."});
   }
   else return ;
 };

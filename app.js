@@ -38,14 +38,18 @@ app.use(function(req, res, next) {
   }
   else if(!req.cookies["user"]){
     if(req.path == '/changePassword'){
-      res.render('infor', {message:'You have to login before you change the password!'})
+      res.render('login');
+      // res.render('infor', {message:'You have to login before you change the password!'})
     }
-    res.render('infor',{message:'Not authorized'});
+    res.render('login');
+    // res.render('infor',{message:'Not authorized, Please Login'});
   }
   else {
     data = jwt.verify(req.cookies["user"], 'a-secret')
     if (data["user"] == null){
-      res.render('infor',{message:'Not authorized, Please Login'});
+      res.render('login');
+      //res.render('infor',{message:'Not authorized, Please Login'});
+
     }
     else{
       next();
